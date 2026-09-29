@@ -30,4 +30,4 @@ Set `GEMINI_MODEL` in `.env` to use a different Gemini model. Do not commit `.en
 
 ## Deploy on Netlify
 
-The repository includes a static Netlify entry point and a serverless function for code reviews. Connect the GitHub repository to Netlify; `netlify.toml` configures the publish directory and function route. In the Netlify site settings, add `GEMINI_API_KEY` as an environment variable and redeploy. `GEMINI_MODEL` is optional and defaults to `gemini-3.5-flash-lite`.
+The repository includes a static Netlify entry point and a serverless function for code reviews. Connect the GitHub repository to Netlify; `netlify.toml` configures the publish directory and function route. No API key is required on Netlify: the function uses Netlify AI Gateway credentials automatically. To use your own Gemini key instead, add `GEMINI_API_KEY` as an environment variable and redeploy. `GEMINI_MODEL` is optional and defaults to `gemini-3.5-flash-lite`.
