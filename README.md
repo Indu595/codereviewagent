@@ -24,7 +24,7 @@ A local Flask app for focused AI code reviews. It sends submitted code to the co
    flask --app app run --debug
    ```
 
-4. Open http://127.0.0.1:5000.
+4. Open https://enchilada-tumbling-curdle.ngrok-free.dev
 
 Set `GEMINI_MODEL` in `.env` to use a different Gemini model. Do not commit `.env` or expose this development server to untrusted networks.
 
