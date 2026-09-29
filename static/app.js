@@ -126,14 +126,20 @@ reviewButton.addEventListener("click", async () => {
         focus: document.querySelector("#focus").value,
         context: document.querySelector("#context").value,
       }),
+      signal: AbortSignal.timeout(70_000),
     });
-    const result = await response.json();
+    const result = await response.json().catch(() => ({
+      error: response.status === 504 || response.status === 502
+        ? "The review service timed out. Try a smaller snippet or try again."
+        : "The review service returned an unexpected response.",
+    }));
     if (!response.ok) throw new Error(result.error || "The review could not be completed.");
     latestReview = result;
     renderReview(result);
     reviewResults.hidden = false;
     copyButton.disabled = false;
   } catch (error) {
+    if (error.name === "TimeoutError") error.message = "The review took too long to respond. Try a smaller snippet or try again.";
     showError(error.message || "Could not reach the review service. Check your connection and try again.");
     emptyState.hidden = false;
   } finally {
