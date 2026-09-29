@@ -27,3 +27,7 @@ A local Flask app for focused AI code reviews. It sends submitted code to the co
 4. Open http://127.0.0.1:5000.
 
 Set `GEMINI_MODEL` in `.env` to use a different Gemini model. Do not commit `.env` or expose this development server to untrusted networks.
+
+## Deploy on Netlify
+
+The repository includes a static Netlify entry point and a serverless function for code reviews. Connect the GitHub repository to Netlify; `netlify.toml` configures the publish directory and function route. In the Netlify site settings, add `GEMINI_API_KEY` as an environment variable and redeploy. `GEMINI_MODEL` is optional and defaults to `gemini-3.5-flash-lite`.

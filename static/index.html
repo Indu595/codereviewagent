@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#151a18">
+    <title>Review Room</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="wordmark" href="/" aria-label="Review Room home">
+        <span class="mark" aria-hidden="true">r<span>.</span></span>
+        <span>review room</span>
+      </a>
+      <div class="topbar-right">
+        <span class="local-label"><span class="status-dot"></span> SERVER-SIDE REVIEW</span>
+        <a class="github-link" href="https://aistudio.google.com/apikey" target="_blank" rel="noreferrer">API key ↗</a>
+      </div>
+    </header>
+
+    <main class="app-shell">
+      <section class="page-heading">
+        <div>
+          <p class="eyebrow">CODE QUALITY / 01</p>
+          <h1>Make the next<br><span>change a better one.</span></h1>
+        </div>
+        <p class="heading-note">A focused second set of eyes.<br>Bring a diff, leave with a direction.</p>
+      </section>
+
+      <section class="workbench" aria-label="Code review workspace">
+        <div class="editor-panel">
+          <div class="panel-topline">
+            <div class="panel-title"><span class="step-number">01</span><span>SUBMISSION</span></div>
+            <label class="file-button" for="file-input" title="Open a source file">
+              <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v9m0 0 3.5-3.5M10 12 6.5 8.5M4 13.5v2A1.5 1.5 0 0 0 5.5 17h9a1.5 1.5 0 0 0 1.5-1.5v-2"/></svg>
+              <span>Open file</span>
+            </label>
+            <input id="file-input" type="file" hidden>
+          </div>
+
+          <div class="editor-options">
+            <label class="field-label" for="language">LANGUAGE
+              <select id="language">
+                <option>Python</option><option>JavaScript</option><option>TypeScript</option>
+                <option>Java</option><option>Go</option><option>Rust</option><option>SQL</option><option>Other</option>
+              </select>
+            </label>
+            <label class="field-label" for="focus">REVIEW FOCUS
+              <select id="focus">
+                <option>General review</option><option>Correctness</option><option>Security</option>
+                <option>Performance</option><option>Maintainability</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="code-editor">
+            <div class="line-gutter" id="line-gutter" aria-hidden="true">1</div>
+            <textarea id="code" spellcheck="false" autocomplete="off" autocapitalize="off" aria-label="Code to review" placeholder="Paste code here, or open a file..." wrap="off"></textarea>
+          </div>
+
+          <label class="context-field" for="context">WHAT SHOULD THE REVIEWER KNOW? <span>OPTIONAL</span>
+            <textarea id="context" rows="2" placeholder="Expected behavior, constraints, or what changed..."></textarea>
+          </label>
+
+          <div class="editor-footer">
+            <span id="char-count">0 / 50,000</span>
+            <button class="review-button" id="review-button" type="button">
+              <span class="button-label">Review code</span>
+              <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4"/></svg>
+            </button>
+          </div>
+          <p class="error-message" id="error-message" role="alert" hidden></p>
+        </div>
+
+        <aside class="results-panel" aria-live="polite">
+          <div class="panel-topline results-topline">
+            <div class="panel-title"><span class="step-number">02</span><span>REVIEW NOTES</span></div>
+            <button class="icon-button" id="copy-button" type="button" aria-label="Copy review as Markdown" title="Copy review" disabled>
+              <svg viewBox="0 0 20 20" aria-hidden="true"><rect x="7" y="7" width="9" height="10" rx="1.5"/><path d="M12 7V5.5A1.5 1.5 0 0 0 10.5 4h-5A1.5 1.5 0 0 0 4 5.5v7A1.5 1.5 0 0 0 5.5 14H7"/></svg>
+            </button>
+          </div>
+          <div class="results-content" id="results-content">
+            <div class="empty-state" id="empty-state">
+              <div class="empty-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+              <p class="empty-title">Room for a second opinion.</p>
+              <p class="empty-copy">Your findings will land here, with line references and practical fixes.</p>
+              <div class="empty-rule"></div>
+              <p class="privacy-note"><span class="lock-icon" aria-hidden="true">◈</span> Code is sent to your configured AI provider for analysis.</p>
+            </div>
+            <div class="loading-state" id="loading-state" hidden>
+              <div class="loading-bars" aria-hidden="true"><i></i><i></i><i></i></div>
+              <p>Reading the change<span class="loading-dots">...</span></p>
+              <span>Checking behavior, edges, and risk</span>
+            </div>
+            <div id="review-results" hidden></div>
+          </div>
+        </aside>
+      </section>
+
+      <footer class="page-footer"><span>REVIEW ROOM <span class="footer-dot">/</span> HUMAN JUDGMENT STILL REQUIRED</span><span>YOUR KEY STAYS SERVER-SIDE</span></footer>
+    </main>
+  </body>
+</html>
